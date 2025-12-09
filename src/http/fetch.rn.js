@@ -1,8 +1,8 @@
 // @ts-nocheck
 'use strict'
 
-const { TimeoutError, AbortError } = require('./error')
-const { Response, Request, Headers, default: fetch } = require('../fetch')
+const { TimeoutError, AbortError } = require('./error.js')
+const { Response, Request, Headers, default: fetch } = require('../fetch.js')
 
 /**
  * @typedef {import('../types').FetchOptions} FetchOptions

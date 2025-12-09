@@ -1,14 +1,14 @@
 /* eslint-disable no-undef */
 'use strict'
 
-const { fetch, Request, Headers } = require('./http/fetch')
-const { TimeoutError, HTTPError } = require('./http/error')
+const { fetch, Request, Headers } = require('./http/fetch.js')
+const { TimeoutError, HTTPError } = require('./http/error.js')
 const mergeOptions = require('merge-options')
 const merge = mergeOptions.bind({ ignoreUndefined: true })
 const { URL, URLSearchParams } = require('iso-url')
 const anySignal = require('any-signal')
 const browserReableStreamToIt = require('browser-readablestream-to-it')
-const { isBrowser, isWebWorker } = require('./env')
+const { isBrowser, isWebWorker } = require('./env.js')
 const all = require('it-all')
 
 /**

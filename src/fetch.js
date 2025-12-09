@@ -6,7 +6,7 @@
  * @typedef {globalThis.Response} Response
  */
 
-const { isElectronMain } = require('./env')
+const { isElectronMain } = require('./env.js')
 const nativeFetch = require('native-fetch')
 const electronFetch = require('electron-fetch')
 

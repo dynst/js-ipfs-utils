@@ -8,8 +8,8 @@
  * @property {globalThis.Headers} fetchImpl.Headers
  */
 
-const fetchNode = require('./fetch.node')
-const fetchBrowser = require('./fetch.browser')
+const fetchNode = require('./fetch.node.js')
+const fetchBrowser = require('./fetch.browser.js')
 
 let fetch = fetchNode;
 

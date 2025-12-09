@@ -1,6 +1,6 @@
 'use strict'
 // @ts-expect-error Request, Response and Headers are global types but concrete in implementations
-const { Request, Response, Headers, default: defaultFetch, fetch: fetchFetch } = require('../fetch')
+const { Request, Response, Headers, default: defaultFetch, fetch: fetchFetch } = require('../fetch.js')
 // @ts-ignore
 const toStream = require('it-to-stream')
 const { Buffer } = require('buffer')

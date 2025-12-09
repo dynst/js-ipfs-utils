@@ -1,6 +1,6 @@
 'use strict'
 
-const HTTP = require('../http')
+const HTTP = require('../http.js')
 
 /**
  *
