@@ -7,4 +7,6 @@
  */
 
 // use window.fetch if it is available, fall back to node-fetch if not
-module.exports = require('native-fetch')
+const nativeFetch = require('native-fetch')
+
+module.exports = nativeFetch
