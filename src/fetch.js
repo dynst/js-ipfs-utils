@@ -7,12 +7,14 @@
  */
 
 const { isElectronMain } = require('./env')
+const nativeFetch = require('native-fetch')
+const electronFetch = require('electron-fetch')
 
 // use window.fetch if it is available, fall back to node-fetch if not
-let impl = 'native-fetch'
+let impl = nativeFetch
 
 if (isElectronMain) {
-  impl = 'electron-fetch'
+  impl = electronFetch
 }
 
-module.exports = require(impl)
+module.exports = impl
