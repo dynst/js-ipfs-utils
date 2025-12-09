@@ -336,8 +336,9 @@ const isWebReadableStream = (value) => {
  * @returns {value is NodeReadableStream}
  */
 const isNodeReadableStream = (value) =>
-  Object.prototype.hasOwnProperty.call(value, 'readable') &&
-  Object.prototype.hasOwnProperty.call(value, 'writable')
+  'readable' in value &&
+  'destroy' in value &&
+  Symbol.asyncIterator in value
 
 HTTP.HTTPError = HTTPError
 HTTP.TimeoutError = TimeoutError
