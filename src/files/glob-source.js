@@ -1,7 +1,7 @@
 'use strict'
 
-const fsp = require('fs').promises
 const fs = require('fs')
+const { promises: fsp } = fs
 const glob = require('it-glob')
 const Path = require('path')
 const errCode = require('err-code')
