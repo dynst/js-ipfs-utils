@@ -7,8 +7,8 @@ const { Buffer } = require('buffer')
 /**
  * @typedef {import('stream').Readable} NodeReadableStream
  *
- * @typedef {import('../types').FetchOptions} FetchOptions
- * @typedef {import('../types').ProgressFn} ProgressFn
+ * @typedef {import('../types.d.ts').FetchOptions} FetchOptions
+ * @typedef {import('../types.d.ts').ProgressFn} ProgressFn
  */
 
 // undici and node-fetch have different exports

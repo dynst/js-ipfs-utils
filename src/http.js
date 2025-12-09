@@ -13,8 +13,8 @@ const all = require('it-all')
 
 /**
  * @typedef {import('stream').Readable} NodeReadableStream
- * @typedef {import('./types').HTTPOptions} HTTPOptions
- * @typedef {import('./types').ExtendedResponse} ExtendedResponse
+ * @typedef {import('./types.d.ts').HTTPOptions} HTTPOptions
+ * @typedef {import('./types.d.ts').ExtendedResponse} ExtendedResponse
  */
 
 /**

@@ -11,8 +11,8 @@ const errCode = require('err-code')
  *
  * @param {string} cwd - The directory to start matching the pattern in
  * @param {string} pattern - Glob pattern to match
- * @param {import('../types').GlobSourceOptions} [options] - Optional options
- * @returns {AsyncGenerator<import('../types').GlobSourceResult, void, unknown>} File objects that match glob
+ * @param {import('../types.d.ts').GlobSourceOptions} [options] - Optional options
+ * @returns {AsyncGenerator<import('../types.d.ts').GlobSourceResult, void, unknown>} File objects that match glob
  */
 module.exports = async function * globSource (cwd, pattern, options) {
   options = options || {}

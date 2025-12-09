@@ -5,8 +5,8 @@ const { TimeoutError, AbortError } = require('./error.js')
 const { Response, Request, Headers, default: fetch } = require('../fetch.js')
 
 /**
- * @typedef {import('../types').FetchOptions} FetchOptions
- * @typedef {import('../types').ProgressFn} ProgressFn
+ * @typedef {import('../types.d.ts').FetchOptions} FetchOptions
+ * @typedef {import('../types.d.ts').ProgressFn} ProgressFn
  */
 
 /**
