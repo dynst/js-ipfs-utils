@@ -8,15 +8,16 @@
  * @property {globalThis.Headers} fetchImpl.Headers
  */
 
-let implName = './fetch.node'
+const fetchNode = require('./fetch.node')
+const fetchBrowser = require('./fetch.browser')
+
+let fetch = fetchNode;
 
 if (typeof XMLHttpRequest === 'function') {
   // Electron has `XMLHttpRequest` and should get the browser implementation
   // instead of node.
-  implName = './fetch.browser'
+  fetch = fetchBrowser
 }
 
 /** @type {fetchImpl} */
-const fetch = require(implName)
-
 module.exports = fetch
