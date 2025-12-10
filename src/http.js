@@ -12,7 +12,6 @@ const { isBrowser, isWebWorker } = require('./env.js')
 const all = require('it-all')
 
 /**
- * @typedef {import('stream').Readable} NodeReadableStream
  * @typedef {import('./types.d.ts').HTTPOptions} HTTPOptions
  * @typedef {import('./types.d.ts').ExtendedResponse} ExtendedResponse
  */
@@ -255,31 +254,12 @@ const ndjson = async function * (source) {
  * Stream to AsyncIterable
  *
  * @template TChunk
- * @param {ReadableStream<TChunk> | NodeReadableStream | null} source
+ * @param {ReadableStream<TChunk> | AsyncIterable<TChunk> | null} source
  * @returns {AsyncIterable<TChunk>}
  */
 const fromStream = (source) => {
   if (isAsyncIterable(source)) {
     return source
-  }
-
-  // Workaround for https://github.com/node-fetch/node-fetch/issues/766
-  if (isNodeReadableStream(source)) {
-    const iter = source[Symbol.asyncIterator]()
-    return {
-      [Symbol.asyncIterator] () {
-        return {
-          next: iter.next.bind(iter),
-          return (value) {
-            source.destroy()
-            if (typeof iter.return === 'function') {
-              return iter.return()
-            }
-            return Promise.resolve({ done: true, value })
-          }
-        }
-      }
-    }
   }
 
   if (isWebReadableStream(source)) {
@@ -330,15 +310,6 @@ const isAsyncIterable = (value) => {
 const isWebReadableStream = (value) => {
   return value && typeof /** @type {any} */(value).getReader === 'function'
 }
-
-/**
- * @param {any} value
- * @returns {value is NodeReadableStream}
- */
-const isNodeReadableStream = (value) =>
-  'readable' in value &&
-  'destroy' in value &&
-  Symbol.asyncIterator in value
 
 HTTP.HTTPError = HTTPError
 HTTP.TimeoutError = TimeoutError
