@@ -2,7 +2,7 @@
 'use strict'
 
 const { TimeoutError, AbortError } = require('./error.js')
-const { Response, Request, Headers, default: fetch } = require('../fetch.js')
+const { Response, Request, Headers, default: fetchWithStreaming } = require('../fetch.js')
 
 /**
  * @typedef {import('../types.d.ts').FetchOptions} FetchOptions
@@ -88,8 +88,6 @@ const fetchWithProgress = (url, options = {}) => {
   })
 }
 
-const fetchWithStreaming = fetch
-
 /**
  * @param {string | Request} url
  * @param {FetchOptions} options
@@ -98,6 +96,8 @@ const fetchWith = (url, options = {}) =>
   (options.onUploadProgress != null)
     ? fetchWithProgress(url, options)
     : fetchWithStreaming(url, options)
+
+const fetch = fetchWith
 
 /**
  * Parse Headers from a XMLHttpRequest
@@ -130,7 +130,7 @@ class ResponseWithURL extends Response {
 }
 
 module.exports = {
-  fetch: fetchWith,
+  fetch,
   Request,
   Headers,
   ResponseWithURL

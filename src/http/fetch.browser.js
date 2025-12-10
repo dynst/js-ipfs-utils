@@ -2,7 +2,7 @@
 
 const { TimeoutError, AbortError } = require('./error.js')
 // @ts-expect-error
-const { Response, Request, Headers, default: fetch } = require('../fetch.js')
+const { Response, Request, Headers, default: fetchWithStreaming } = require('../fetch.js')
 
 /**
  * @typedef {import('../types.d.ts').FetchOptions} FetchOptions
@@ -95,8 +95,6 @@ const fetchWithProgress = (url, options = {}) => {
   })
 }
 
-const fetchWithStreaming = fetch
-
 /**
  * @param {string | Request} url
  * @param {FetchOptions} options
@@ -105,6 +103,12 @@ const fetchWith = (url, options = {}) =>
   (options.onUploadProgress != null)
     ? fetchWithProgress(url, options)
     : fetchWithStreaming(url, options)
+
+let fetch = fetchWithStreaming
+
+if (typeof XMLHttpRequest === 'function') {
+  fetch = fetchWith
+}
 
 /**
  * Parse Headers from a XMLHttpRequest
@@ -137,7 +141,7 @@ class ResponseWithURL extends Response {
 }
 
 module.exports = {
-  fetch: fetchWith,
+  fetch,
   Request,
   Headers
 }
