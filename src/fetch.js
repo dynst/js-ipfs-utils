@@ -6,6 +6,9 @@
  * @typedef {globalThis.Response} Response
  */
 
-const nativeFetch = require('native-fetch')
-
-module.exports = nativeFetch
+module.exports = {
+    Headers: globalThis.Headers,
+    Request: globalThis.Request,
+    Response: globalThis.Response,
+    default: globalThis.fetch
+}
